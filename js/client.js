@@ -1,1 +1,1 @@
-this.module.onLoad();
+document.addEventListener("DOMContentLoaded", this.module.click);

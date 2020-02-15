@@ -1,3 +1,6 @@
+const Reporter = require('jasmine-console-reporter');
+jasmine.getEnv().addReporter(new Reporter());
+
 const jsdom = require("jsdom");
 const functions = require('../js/module.js');
 const { JSDOM } = jsdom;
