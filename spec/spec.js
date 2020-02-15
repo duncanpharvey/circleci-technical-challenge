@@ -1,40 +1,39 @@
 const Reporter = require('jasmine-console-reporter');
 jasmine.getEnv().addReporter(new Reporter());
 
-const jsdom = require("jsdom");
 const functions = require('../js/module.js');
+const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
-describe("Text Display", () => {
-  beforeEach(function() {
-    var document = new JSDOM('<!DOCTYPE html><div id="hidden-text" style="display:none">You pressed it!</div>').window.document;
-    global.document = document;
+describe("Click Tests", () => {
+  beforeEach(async function() {
+    await JSDOM.fromFile("./index.html").then(dom => {
+      document = dom.window.document;
+    });
   });
-  
-  it("should be hidden on page load", () => {
-    var mockElement = document.getElementById('hidden-text');
-    console.log("before: " + mockElement.style.display)
-    expect(mockElement.style.display).toEqual('none');
+
+  it("should hide text on page load", () => {
+    expect(document.getElementById("hidden-text").style.display).toEqual("none");
   })
 
-  it("should have a different display style after toggleText is called once", () => {
-    var mockElement = document.getElementById('hidden-text');
-    var before = mockElement.style.display;
-    console.log("before: " + before)
-    functions.toggleText();
-    var after = mockElement.style.display;
-    console.log("after: " + after)
+  it("should toggle text display status when clicked once", () => {
+    var button = document.getElementById("the-button");
+    var text = document.getElementById("hidden-text");
+    functions.listenForButtonClick();
+    var before = text.style.display;
+    button.click();
+    var after = text.style.display;
     expect(before).not.toEqual(after);
   })
 
-  it("should have the same display style after toggleText is called twice", () => {
-    var mockElement = document.getElementById('hidden-text');
-    var before = mockElement.style.display;
-    console.log("before: " + before)
-    functions.toggleText();
-    functions.toggleText();
-    var after = mockElement.style.display;
-    console.log("after: " + after)
+  it("should have original text display status when clicked twice", () => {
+    var button = document.getElementById("the-button");
+    var text = document.getElementById("hidden-text");
+    functions.listenForButtonClick();
+    var before = text.style.display;
+    button.click();
+    button.click();
+    var after = text.style.display;
     expect(before).toEqual(after);
   })
 });

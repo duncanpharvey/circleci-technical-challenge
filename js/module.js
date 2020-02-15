@@ -9,14 +9,14 @@
     }
   }
 
-  var click = function (event) {
-    var button = document.querySelector("button");
+  var listenForButtonClick = function (event) {
+    var button = document.getElementById("the-button");
     if (button) {
       button.addEventListener("click", toggleText);
     }
   }
 
   exports.toggleText = toggleText;
-  exports.click = click;
+  exports.listenForButtonClick = listenForButtonClick;
   
-}) (typeof exports === 'undefined'? this['module']={}: exports); 
+}) (typeof exports === "undefined"? this["module"]={}: exports); 
