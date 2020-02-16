@@ -13,6 +13,7 @@ body {
     padding: 25px 40px;
     text-align: center;
     width: 100%;
+    cursor: pointer;
 }
 
 #the-button:active {
