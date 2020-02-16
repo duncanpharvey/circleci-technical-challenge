@@ -19,4 +19,4 @@
   exports.toggleText = toggleText;
   exports.listenForButtonClick = listenForButtonClick;
   
-}) (typeof exports === "undefined"? this["module"]={}: exports); 
+}) (typeof exports === "undefined"? this["common"]={}: exports); // give browser and node access to functions

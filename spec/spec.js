@@ -1,21 +1,23 @@
 const Reporter = require('jasmine-console-reporter');
-jasmine.getEnv().addReporter(new Reporter());
+jasmine.getEnv().addReporter(new Reporter()); // displays test summary nicely in console
 
-const functions = require('../js/module.js');
+const functions = require('../js/common.js');
 const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
+const { JSDOM } = jsdom; // use DOM in node
 
 describe("Click Tests", () => {
   beforeEach(async function() {
-    await JSDOM.fromFile("./index.html").then(dom => {
-      document = dom.window.document;
+    await JSDOM.fromFile("./index.html").then(dom => { // wait for dom to load from file before running tests
+      document = dom.window.document; // global document variable reset for each test run
     });
   });
 
+  // no clicks
   it("should hide text on page load", () => {
     expect(document.getElementById("hidden-text").style.display).toEqual("none");
   })
 
+  // one click
   it("should toggle text display status when clicked once", () => {
     var button = document.getElementById("the-button");
     var text = document.getElementById("hidden-text");
@@ -26,6 +28,7 @@ describe("Click Tests", () => {
     expect(before).not.toEqual(after);
   })
 
+  // two clicks
   it("should have original text display status when clicked twice", () => {
     var button = document.getElementById("the-button");
     var text = document.getElementById("hidden-text");

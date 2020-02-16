@@ -1,1 +1,1 @@
-document.addEventListener("DOMContentLoaded", this.module.listenForButtonClick);
+document.addEventListener("DOMContentLoaded", common.listenForButtonClick);
