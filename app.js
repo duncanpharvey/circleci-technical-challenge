@@ -9,4 +9,4 @@ app.get('/', function(req, res) {
 app.use('/css', express.static(__dirname + '/css'));
 app.use('/js', express.static(__dirname + '/js'));
 
-app.listen(port, () => console.log(`url-shortener listening on port ${port}!`));
+app.listen(process.env.PORT || port, () => console.log(`url-shortener listening on port ${port}!`));
