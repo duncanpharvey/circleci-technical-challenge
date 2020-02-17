@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const port = 3000;
 
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
@@ -9,4 +8,4 @@ app.get('/', function(req, res) {
 app.use('/css', express.static(__dirname + '/css'));
 app.use('/js', express.static(__dirname + '/js'));
 
-app.listen(process.env.PORT || port, () => console.log(`url-shortener listening on port ${port}!`));
+app.listen(process.env.PORT || 5000); // use port if provided, otherwise use 5000
