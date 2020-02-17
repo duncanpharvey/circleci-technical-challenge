@@ -2,9 +2,12 @@
   "name": "circleci-technical-challenge",
   "version": "1.0.0",
   "description": "",
-  "main": "module.js",
+  "main": "app.js",
   "scripts": {
     "test": "jasmine"
+  },
+  "engines": {
+    "node": "10.14.1"
   },
   "repository": {
     "type": "git",
@@ -18,6 +21,7 @@
   },
   "homepage": "https://github.com/duncanpharvey/circleci-technical-challenge#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "jasmine": "^3.5.0",
     "jsdom": "^16.1.0"
   },
