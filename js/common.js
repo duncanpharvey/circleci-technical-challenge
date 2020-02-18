@@ -14,7 +14,7 @@
   }
 
   var onLoad = function(event) {
-    document.addEventListener("DOMContentLoaded", listenForButtonClick)
+    document.addEventListener("DOMContentLoaded", listenForButtonClick);
   }
 
   exports.toggleText = toggleText;

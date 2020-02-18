@@ -1,13 +1,13 @@
-const Reporter = require('jasmine-console-reporter');
+const Reporter = require("jasmine-console-reporter");
 jasmine.getEnv().addReporter(new Reporter()); // displays test summary nicely in console
 
-const functions = require('../js/common.js');
+const functions = require("../js/common.js");
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom; // use DOM in node
 
 describe("Click Tests", () => {
   beforeEach(async function() {
-    await JSDOM.fromFile("./index.html", { runScripts: 'dangerously', resources: "usable" }).then(dom => { // wait for dom to load from file before running tests
+    await JSDOM.fromFile("./index.html", { runScripts: "dangerously", resources: "usable" }).then(dom => { // wait for dom to load from file before running tests
       window = dom.window;
     });
     await new Promise(resolve => window.addEventListener("load", resolve)); // wait for external scripts to finish before running tests
