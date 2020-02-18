@@ -7,9 +7,11 @@ const { JSDOM } = jsdom; // use DOM in node
 
 describe("Click Tests", () => {
   beforeEach(async function() {
-    await JSDOM.fromFile("./index.html").then(dom => { // wait for dom to load from file before running tests
-      document = dom.window.document; // global document variable reset for each test run
+    await JSDOM.fromFile("./index.html", { runScripts: 'dangerously', resources: "usable" }).then(dom => { // wait for dom to load from file before running tests
+      window = dom.window;
     });
+    await new Promise(resolve => window.addEventListener("load", resolve)); // wait for external scripts to finish before running tests
+    document = window.document; // global document variable reset for each test run
   });
 
   // no clicks
@@ -21,7 +23,6 @@ describe("Click Tests", () => {
   it("should toggle text display status when clicked once", () => {
     var button = document.getElementById("the-button");
     var text = document.getElementById("hidden-text");
-    functions.listenForButtonClick();
     var before = text.style.display;
     button.click();
     var after = text.style.display;
@@ -32,7 +33,6 @@ describe("Click Tests", () => {
   it("should have original text display status when clicked twice", () => {
     var button = document.getElementById("the-button");
     var text = document.getElementById("hidden-text");
-    functions.listenForButtonClick();
     var before = text.style.display;
     button.click();
     button.click();
