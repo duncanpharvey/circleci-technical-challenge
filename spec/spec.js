@@ -1,7 +1,6 @@
 const Reporter = require("jasmine-console-reporter");
 jasmine.getEnv().addReporter(new Reporter()); // displays test summary nicely in console
 
-const functions = require("../js/common.js");
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom; // use DOM in node
 
