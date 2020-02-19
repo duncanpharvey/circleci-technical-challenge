@@ -11,6 +11,8 @@ describe("Click Tests", () => {
     });
     await new Promise(resolve => window.addEventListener("load", resolve)); // wait for external scripts to finish before running tests
     document = window.document; // global document variable reset for each test run
+    button = document.getElementById("the-button");
+    text = document.getElementById("hidden-text");
   });
 
   // no clicks
@@ -20,8 +22,6 @@ describe("Click Tests", () => {
 
   // one click
   it("should toggle text display status when clicked once", () => {
-    var button = document.getElementById("the-button");
-    var text = document.getElementById("hidden-text");
     var before = text.style.display;
     button.click();
     var after = text.style.display;
@@ -30,8 +30,6 @@ describe("Click Tests", () => {
 
   // two clicks
   it("should have original text display status when clicked twice", () => {
-    var button = document.getElementById("the-button");
-    var text = document.getElementById("hidden-text");
     var before = text.style.display;
     button.click();
     button.click();
