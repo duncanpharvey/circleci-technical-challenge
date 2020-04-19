@@ -8,7 +8,7 @@ require('dotenv').config();
 
 describe("Puppeteer Click Tests", () => {
   beforeEach(async function () {
-    this.browser = await puppeteer.launch({ headless: true });
+    this.browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
     this.page = await this.browser.newPage();
     await this.page.goto(`http://localhost:${process.env.PORT}/`);
     this.handle = await this.page.evaluateHandle(() => ({ document }));
@@ -75,13 +75,13 @@ describe("JSDOM Click Tests", () => {
   });
 
   // one click
-  it("should toggle text display status when clicked once", async function() {
+  it("should toggle text display status when clicked once", async function () {
     this.button.click();
     expect(this.before).not.toEqual(this.text.style.display);
   });
 
   // two clicks
-  it("should have original text display status when clicked twice", async function() {
+  it("should have original text display status when clicked twice", async function () {
     this.button.click();
     this.button.click();
     expect(this.before).toEqual(this.text.style.display);
