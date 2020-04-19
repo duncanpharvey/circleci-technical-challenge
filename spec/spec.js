@@ -8,11 +8,9 @@ require('dotenv').config();
 
 describe("Puppeteer Click Tests", () => {
   beforeEach(async function () {
-    this.browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+    this.browser = await puppeteer.launch({ headless: true });
     this.page = await this.browser.newPage();
-    const url = `http://localhost:${process.env.PORT}/`;
-    console.log(url);
-    await this.page.goto(url);
+    await this.page.goto(`http://localhost:${process.env.PORT}/`);
     this.handle = await this.page.evaluateHandle(() => ({ document }));
     const properties = await this.handle.getProperties();
     this.documentHandle = properties.get('document');
