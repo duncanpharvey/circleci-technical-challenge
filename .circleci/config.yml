@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   heroku: circleci/heroku@1.0.1 # Invoke the Heroku orb
+  puppeteer: threetreeslight/puppeteer@0.1.2
 
 workflows:
   heroku_deploy:
@@ -15,7 +16,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:latest-browsers
+      - image: circleci/node:10.14.1
 
     working_directory: ~/repo
 
