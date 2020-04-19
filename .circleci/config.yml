@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   heroku: circleci/heroku@1.0.1 # Invoke the Heroku orb
-  puppeteer: threetreeslight/puppeteer@0.1.2
+  puppeteer: threetreeslight/puppeteer@0.1.2 # Invoke 3rd party Puppeteer orb
 
 workflows:
   heroku_deploy:
